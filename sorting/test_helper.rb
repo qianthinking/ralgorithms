@@ -9,7 +9,7 @@ module Sorting
       data = sample_data
       clazz = eval("Sorting::#{filename.split("\.")[0].capitalize}")
       puts "#{clazz} - before sort: #{data.inspect}"
-      data = clazz.sort data
+      clazz.sort! data
       puts "#{clazz} - after  sort: #{data.inspect}"
     end
 

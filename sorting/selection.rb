@@ -1,7 +1,7 @@
 module Sorting
   class Selection
 
-    def self.sort(data)
+    def self.sort!(data)
       max_i = data.size - 1
       (0...max_i).each do |i|
         min_index = i
@@ -10,7 +10,6 @@ module Sorting
         end
         data[i], data[min_index] = data[min_index], data[i]
       end
-      data
     end
 
   end

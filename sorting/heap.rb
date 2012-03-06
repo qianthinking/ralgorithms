@@ -3,15 +3,16 @@ module Sorting
 
     class << self
 
-      def sort(data)
+      def sort!(data)
         build_max_heap data
         max_i = data.size - 1
         max_i.downto(0).each do |i|
           data[0], data[i] = data[i], data[0]
           maintain_max_heap data, 0, i - 1
         end
-        data
       end
+
+      protected
 
       def build_max_heap(data)
         max_i = data.size - 1

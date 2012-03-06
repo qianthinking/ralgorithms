@@ -1,7 +1,7 @@
 module Sorting
   class Bubble
 
-    def self.sort(data)
+    def self.sort!(data)
       max_i = data.size - 1
       (0...max_i).each do |i|
         swapped = false
@@ -13,7 +13,6 @@ module Sorting
         end
         break if !swapped
       end
-      data
     end
 
   end
