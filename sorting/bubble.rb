@@ -13,13 +13,14 @@ module Sorting
         end
         break if !swapped
       end
+      nil
     end
 
   end
 end
 
 if __FILE__ == $0
-  require 'test_helper'
+  require File.join(File.dirname(__FILE__), "test_helper")
   Sorting::TestHelper.test __FILE__
 end
 

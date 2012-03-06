@@ -10,12 +10,13 @@ module Sorting
         end
         data[i], data[min_index] = data[min_index], data[i]
       end
+      nil
     end
 
   end
 end
 
 if __FILE__ == $0
-  require 'test_helper'
+  require File.join(File.dirname(__FILE__), "test_helper")
   Sorting::TestHelper.test __FILE__
 end

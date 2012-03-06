@@ -10,6 +10,7 @@ module Sorting
           data[0], data[i] = data[i], data[0]
           maintain_max_heap data, 0, i - 1
         end
+        nil
       end
 
       protected
@@ -59,6 +60,6 @@ end
 
 
 if __FILE__ == $0
-  require 'test_helper'
+  require File.join(File.dirname(__FILE__), "test_helper")
   Sorting::TestHelper.test __FILE__
 end
