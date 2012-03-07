@@ -8,7 +8,7 @@ module Sorting
         max_i = data.size - 1
         max_i.downto(0).each do |i|
           data[0], data[i] = data[i], data[0]
-          maintain_max_heap data, 0, i - 1
+          rebalance_max_heap data, 0, i - 1
         end
         nil
       end
@@ -18,11 +18,11 @@ module Sorting
       def build_max_heap(data)
         max_i = data.size - 1
         max_i.heap_parent.downto(0).each do |i|
-          maintain_max_heap data, i, max_i
+          rebalance_max_heap data, i, max_i
         end
       end
 
-      def maintain_max_heap(data, i, last_i)
+      def rebalance_max_heap(data, i, last_i)
         while (child = i.heap_left_child) <= last_i
           if child < last_i #has two children
             child = child.heap_right_sibling if data[child.heap_right_sibling] > data[child]
