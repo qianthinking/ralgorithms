@@ -121,7 +121,7 @@ module Sorting
           break if j == LEONARDO_NUMBERS[last_heap_size] - 1
           to_compare = j
           if last_heap_size > 1
-            larger_child = larger_child(j, last_heap_size)
+            larger_child = larger_child(data, j, last_heap_size)
             to_compare = larger_child if data[larger_child] > to_compare
           end
           prior_heap =  j - LEONARDO_NUMBERS[last_heap_size]
@@ -144,8 +144,10 @@ module Sorting
         root - 1
       end
 
-      def larger_child(root, size)
-        [left_child(root, size), right_child(root)].max
+      def larger_child(data, root, size)
+        left_child = left_child(root, size)
+        right_child = right_child(root)
+        data[left_child] > data[right_child] ? left_child : right_child
       end
 
     end
