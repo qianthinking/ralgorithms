@@ -126,7 +126,7 @@ module Sorting
           end
           prior_heap =  j - LEONARDO_NUMBERS[last_heap_size]
           break if data[to_compare] > data[prior_heap]
-          data[prior_heap], data[j] = data[j], data[prior_heap]
+          data[prior_heap], data[j] = data[j], data[prior_heap] if data[j] < data[prior_heap]
           j = prior_heap
           begin
             helper.bit_trees >>= 1
