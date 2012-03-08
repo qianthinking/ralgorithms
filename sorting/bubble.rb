@@ -21,6 +21,6 @@ end
 
 if __FILE__ == $0
   require File.join(File.dirname(__FILE__), "test_helper")
-  Sorting::TestHelper.test __FILE__
+  Sorting::TestHelper.test __FILE__, 1000
 end
 
