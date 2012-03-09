@@ -5,10 +5,11 @@ module Sorting
       (1...data.size).each do |i|
         value = data[i]
         j = i
-        while (j -= 1) >= 0 && data[j] > value
-          data[j+1] = data[j]
+        while j > 0 && value < (previous = data[j-1])
+          data[j] = previous
+          j -= 1
         end
-        data[j+1] = value
+        data[j] = value
       end
       nil
     end
