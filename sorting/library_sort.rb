@@ -33,12 +33,7 @@ module Sorting
     end
 
     def self.build_steps(data)
-      min = data[0]
-      max = data[0]
-      data.each do |e|
-        min = e if e < min
-        max = e if e > max
-      end
+      min, max = data.minmax
       gap = (GAP * (max - min + 1).to_f/data.size).to_i
       steps = []
       step = min - 1
