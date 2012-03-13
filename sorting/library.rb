@@ -1,29 +1,68 @@
+require File.join(File.dirname(File.realpath(__FILE__)), "helper")
+require File.join(File.dirname(File.realpath(__FILE__)), "insertion")
 module Sorting
   class Library
+    extend Helper
 
-    EMPTY = 0
-    GAP = 9
+    GAP = 8
 
-    def self.sort!(odata, gap = GAP)
-      data = Array.new odata.size*(1+gap)
-      odata.each_with_index do |e, i|
-        data[i + i*gap] = e
+    def self.sort(data)
+      sorting_data = Array.new data.size
+      steps = build_steps data
+      step_counts = {}
+      data.each do |e|
+        step = binary_big_search steps, e
+        step_counts[step] = (step_counts[step] || 0) + 1
       end
-      (1...data.size).each do |i|
-        value = data[i]
-        next unless value
-        j = i
-        while j > 0
-          previous = data[j-1]
-          if previous
-            break if value >= previous
-            data[j] = previous
-          end
-          j -= 1
+      step_locations = {}
+      last_location = 0
+      last_step_item_count = 0 
+      steps.each do |step|
+        last_location += last_step_item_count
+        step_locations[step] = last_location
+        last_step_item_count = step_counts[step]
+      end
+      data.each do |e|
+        step = binary_big_search steps, e
+        sorting_data[step_locations[step]] = e
+        step_locations[step] += 1
+      end
+      Insertion.sort! sorting_data
+      sorting_data
+    end
+
+    def self.build_steps(data)
+      min = data[0]
+      max = data[0]
+      data.each do |e|
+        min = e if e < min
+        max = e if e > max
+      end
+      gap = (GAP * (max - min + 1).to_f/data.size).to_i
+      steps = []
+      step = min - 1
+      while step < max
+        step += gap
+        steps << step
+      end
+      steps
+    end
+
+    def self.binary_big_search(data, item)
+      low = 0
+      high = data.size - 1
+      found = nil
+      while low <= high
+        mid = low +  (high-low)/2
+        value = data[mid]
+        if value < item
+          low = mid + 1
+        else
+          found = value
+          high = mid - 1
         end
-        data[j] = value
       end
-      nil
+      found
     end
 
   end
@@ -31,5 +70,5 @@ end
 
 if __FILE__ == $0
   require File.join(File.dirname(File.realpath(__FILE__)), "test_helper")
-  Sorting::TestHelper.test __FILE__, 1000
+  Sorting::TestHelper.test __FILE__, 100_000
 end
