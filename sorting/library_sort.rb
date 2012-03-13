@@ -12,7 +12,7 @@ module Sorting
       steps = build_steps data
       step_counts = {}
       data.each do |e|
-        step = binary_big_search steps, e
+        step = binary_search_first_bigger_value steps, e
         step_counts[step] = (step_counts[step] || 0) + 1
       end
       step_locations = {}
@@ -24,7 +24,7 @@ module Sorting
         last_step_item_count = step_counts[step]
       end
       data.each do |e|
-        step = binary_big_search steps, e
+        step = binary_search_first_bigger_value steps, e
         sorting_data[step_locations[step]] = e
         step_locations[step] += 1
       end
@@ -44,7 +44,7 @@ module Sorting
       steps
     end
 
-    def self.binary_big_search(data, item)
+    def self.binary_search_first_bigger_value(data, item)
       low = 0
       high = data.size - 1
       found = nil
