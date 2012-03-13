@@ -4,6 +4,7 @@ module Sorting
   class QuickSort
     extend Helper
     TEST_DATA_SIZE=100_000
+    SIZE_FOR_INSERTION=12
 
     def self.sort!(data)
       quicksort(data)
@@ -12,7 +13,7 @@ module Sorting
 
     def self.quicksort(data, p=0, r=data.size-1)
       size = r - p
-      if size > 12
+      if size > SIZE_FOR_INSERTION
         q = partition(data, p, r)
         quicksort(data, p, q-1)
         quicksort(data, q+1, r)
