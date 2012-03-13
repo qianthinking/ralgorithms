@@ -14,3 +14,4 @@ Algorithms implemented in Ruby
 * smooth sort: Sorting::SmoothSort.sort
 * insertion sort: Sorting::InsertionSort.sort
 * library sort: Sorting::LibrarySort.sort
+* quick sort: Sorting::QuickSort.sort
