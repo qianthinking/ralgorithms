@@ -1,5 +1,7 @@
+require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
   class Heap
+    extend Helper
 
     class << self
 

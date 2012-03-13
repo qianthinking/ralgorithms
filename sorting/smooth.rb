@@ -1,7 +1,9 @@
 #http://www.keithschwarz.com/smoothsort/
 #http://www.keithschwarz.com/interesting/code/?dir=smoothsort
+require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
   class Smooth
+    extend Helper
     LEONARDO_NUMBERS = [
       1, 1, 3, 5, 9, 15, 25, 41, 67, 109, 177, 287, 465, 753, 
       1219, 1973, 3193, 5167, 8361, 13529, 21891, 35421, 57313, 92735,
@@ -13,7 +15,7 @@ module Sorting
     LEONARDO_MAPPING = Hash[LEONARDO_NUMBERS.each_with_index.to_a]
     LAST_ZERO = 2**32 - 2
 
-    class Helper
+    class HeapHelper
       attr_accessor :bit_trees
       attr_accessor :smallest_heap_size
       def initialize
@@ -26,7 +28,7 @@ module Sorting
 
       def sort!(data)
         max_i = data.size - 1
-        helper = Helper.new
+        helper = HeapHelper.new
         build_leonardo_heap data, max_i, helper
         max_i.downto(1) do |i|
           leonardo_heap_remove(data, i, helper)

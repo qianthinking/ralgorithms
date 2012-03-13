@@ -1,5 +1,7 @@
+require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
   class Insertion
+    extend Helper
 
     def self.sort!(data)
       (1...data.size).each do |i|

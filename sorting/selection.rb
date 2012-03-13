@@ -1,5 +1,7 @@
+require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
   class Selection
+    extend Helper
 
     def self.sort!(data)
       max_i = data.size - 1
