@@ -1,8 +1,9 @@
 require File.join(File.dirname(File.realpath(__FILE__)), "helper")
-require File.join(File.dirname(File.realpath(__FILE__)), "insertion")
+require File.join(File.dirname(File.realpath(__FILE__)), "insertion_sort")
 module Sorting
-  class Library
+  class LibrarySort
     extend Helper
+    TEST_DATA_SIZE=100_000
 
     GAP = 8
 
@@ -27,7 +28,7 @@ module Sorting
         sorting_data[step_locations[step]] = e
         step_locations[step] += 1
       end
-      Insertion.sort! sorting_data
+      InsertionSort.sort! sorting_data
       sorting_data
     end
 
@@ -70,5 +71,5 @@ end
 
 if __FILE__ == $0
   require File.join(File.dirname(File.realpath(__FILE__)), "test_helper")
-  Sorting::TestHelper.test __FILE__, 100_000
+  Sorting::TestHelper.test __FILE__
 end

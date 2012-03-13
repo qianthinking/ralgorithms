@@ -16,10 +16,11 @@ module Sorting
       data
     end
 
-    def self.test(filename, benchmark_data_size)
+    def self.test(filename, benchmark_data_size=nil)
       data = get_sample_data
-      clazz = eval("Sorting::#{File.basename(filename).split("\.")[0].capitalize}")
+      clazz = eval("Sorting::#{File.basename(filename).split("_")[0].capitalize}Sort")
       puts "#{clazz} - before sort: #{data.inspect}"
+      benchmark_data_size ||= clazz::TEST_DATA_SIZE
       data = sort(clazz, data)
       puts "#{clazz} - after  sort: #{data.inspect}"
 
@@ -31,7 +32,7 @@ module Sorting
       end
       diff = diff(benchmark_data, sample_data.sort)
       raise "sort wrong for #{sample_data.inspect}, diff: #{diff.inspect}" unless diff.empty?
-      puts "cost of sorting #{sample_data.size} ordered number"
+      puts "#{sample_data.size} ordered number cost"
       puts result
 
       sample_data = get_sample_data benchmark_data_size
@@ -42,7 +43,7 @@ module Sorting
       end
       diff = diff(benchmark_data, sample_data.sort)
       raise "sort wrong for #{sample_data.inspect}, diff: #{diff.inspect}" unless diff.empty?
-      puts "cost of sorting #{sample_data.size} random numbers"
+      puts "#{sample_data.size} ordered number cost"
       puts result
     end
 
@@ -55,5 +56,13 @@ module Sorting
       diff
     end
 
+  end
+end
+if __FILE__ == $0
+  dir = File.dirname(File.realpath(__FILE__))
+  Dir.foreach(dir).grep /sort/ do |file|
+    require File.join(dir, file)
+    Sorting::TestHelper.test file
+    puts "\n"
   end
 end

@@ -2,8 +2,9 @@
 #http://www.keithschwarz.com/interesting/code/?dir=smoothsort
 require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
-  class Smooth
+  class SmoothSort
     extend Helper
+    TEST_DATA_SIZE=100_000
     LEONARDO_NUMBERS = [
       1, 1, 3, 5, 9, 15, 25, 41, 67, 109, 177, 287, 465, 753, 
       1219, 1973, 3193, 5167, 8361, 13529, 21891, 35421, 57313, 92735,
@@ -159,5 +160,5 @@ end
 
 if __FILE__ == $0
   require File.join(File.dirname(File.realpath(__FILE__)), "test_helper")
-  Sorting::TestHelper.test __FILE__, 100_000
+  Sorting::TestHelper.test __FILE__
 end

@@ -1,7 +1,8 @@
 require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
-  class Bubble
+  class BubbleSort
     extend Helper
+    TEST_DATA_SIZE=1000
 
     def self.sort!(data)
       max_i = data.size - 1
@@ -23,6 +24,6 @@ end
 
 if __FILE__ == $0
   require File.join(File.dirname(File.realpath(__FILE__)), "test_helper")
-  Sorting::TestHelper.test __FILE__, 1000
+  Sorting::TestHelper.test __FILE__
 end
 

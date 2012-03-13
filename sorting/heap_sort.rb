@@ -1,7 +1,8 @@
 require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
-  class Heap
+  class HeapSort
     extend Helper
+    TEST_DATA_SIZE=100_000
 
     class << self
 
@@ -63,5 +64,5 @@ end
 
 if __FILE__ == $0
   require File.join(File.dirname(File.realpath(__FILE__)), "test_helper")
-  Sorting::TestHelper.test __FILE__, 100_000
+  Sorting::TestHelper.test __FILE__
 end
