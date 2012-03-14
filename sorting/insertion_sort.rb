@@ -8,7 +8,7 @@ module Sorting
       ((l+1)..r).each do |i|
         value = data[i]
         j = i
-        while j > 0 && value < (previous = data[j-1])
+        while j > l && value < (previous = data[j-1])
           data[j] = previous
           j -= 1
         end
