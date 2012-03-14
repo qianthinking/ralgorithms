@@ -1,9 +1,11 @@
 require File.join(File.dirname(File.realpath(__FILE__)), "heap_sort")
+require File.join(File.dirname(File.realpath(__FILE__)), "insertion_sort")
 require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
   class IntroSort
     extend Helper
     TEST_DATA_SIZE=100_000
+    SIZE_FOR_INSERTION=12
 
     def self.sort!(data)
       introsort(data)
@@ -12,8 +14,12 @@ module Sorting
 
     def self.introsort(data, l=0, r=data.size-1, depth_limit=2*Math.log((r-l), 2).to_i)
       while (distance = (r - l)) > 0
-        if depth_limit == 0
+        if distance < SIZE_FOR_INSERTION
+          Sorting::InsertionSort.sort! data, l, r
+          return
+        elsif depth_limit == 0
           Sorting::HeapSort.sort! data, l, r
+          return
         else
           depth_limit -= 1
           q = partition(data, l, r)
