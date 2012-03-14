@@ -8,54 +8,40 @@ module Sorting
     def self.sort!(data, l=0, r=data.size-1)
       ((l+1)..r).each do |i|
         value = data[i]
-        j = i
-        while j > l && value < (previous = data[j-1])
-          data[j] = previous
-          j -= 1
+        low = l
+        high = i-1
+        found = nil
+        while low <= high
+          mid = low +  (high-low)/2
+          if data[mid] < value
+            low = mid + 1
+          else
+            found = mid
+            high = mid - 1
+          end
         end
-        data[j] = value
+        if found
+          length = i-found
+          data[found+1, length] = data[found,length]
+          data[found] = value
+        end
       end
       nil
     end
 
-    def self.sort2!(data, l=0, r=data.size-1)
-      ((l+1)..r).each do |i|
-        value = data[i]
-        j = i
-        if i-l > BINARY_SEARCH_THRESHOLD
-          found = binary_search_first_bigger_index data, l, i-1, value
-          if found
-            while j > found
-              previous = data[j-1]
-              data[j] = previous
-              j -= 1
-            end
-          end
-        else
-          while j > l && value < (previous = data[j-1])
-            data[j] = previous
-            j -= 1
-          end
-        end
-        data[j] = value
-      end
-      nil
-    end
-
-    def self.binary_search_first_bigger_index(data, low, high, item)
-      found = nil
-      while low <= high
-        mid = low +  (high-low)/2
-        value = data[mid]
-        if value < item
-          low = mid + 1
-        else
-          found = mid
-          high = mid - 1
-        end
-      end
-      found
-    end
+    ##simple version
+    #def self.sort!(data, l=0, r=data.size-1)
+    #  ((l+1)..r).each do |i|
+    #    value = data[i]
+    #    j = i
+    #    while j > l && value < (previous = data[j-1])
+    #      data[j] = previous
+    #      j -= 1
+    #    end
+    #    data[j] = value
+    #  end
+    #  nil
+    #end
 
   end
 end
