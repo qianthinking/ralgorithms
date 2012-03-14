@@ -6,29 +6,28 @@ module Sorting
 
     class << self
 
-      def sort!(data)
+      def sort!(data, l=0, r=data.size-1)
         build_max_heap data
-        max_i = data.size - 1
-        max_i.downto(0).each do |i|
-          data[0], data[i] = data[i], data[0]
-          rebalance_max_heap data, 0, i - 1
+        r.downto(l).each do |i|
+          data[l], data[i] = data[i], data[l]
+          rebalance_max_heap data, l, l, i - 1
         end
         nil
       end
 
       protected
 
-      def build_max_heap(data)
-        max_i = data.size - 1
-        max_i.heap_parent.downto(0).each do |i|
-          rebalance_max_heap data, i, max_i
+      def build_max_heap(data, l=0, r=data.size-1)
+        get_parent(l, r).downto(l).each do |i|
+          rebalance_max_heap data, l, i, r
         end
       end
 
-      def rebalance_max_heap(data, i, last_i)
-        while (child = i.heap_left_child) <= last_i
+      def rebalance_max_heap(data, start, i, last_i)
+        while (child = get_left_child(start, i)) <= last_i
           if child < last_i #has two children
-            child = child.heap_right_sibling if data[child.heap_right_sibling] > data[child]
+            right_sibling = child + 1
+            child = right_sibling if data[right_sibling] > data[child]
           end
           if data[i] > data[child]
             break
@@ -39,26 +38,18 @@ module Sorting
         end
       end
 
+      def get_parent(start, i)
+        i == start ? start : (i - start) / 2
+      end
+
+      def get_left_child(start, i)
+        (i-start)*2 + 1
+      end
+
+
     end
 
   end
-end
-
-#used for clean code, you need consider the side effect to your project
-class Fixnum
-
-  def heap_parent
-    self == 0 ? 0 : (self - 1) / 2
-  end
-
-  def heap_left_child
-    self*2 + 1
-  end
-
-  def heap_right_sibling
-    self + 1    
-  end
-
 end
 
 
