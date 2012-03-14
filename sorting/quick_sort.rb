@@ -12,13 +12,15 @@ module Sorting
     end
 
     def self.quicksort(data, p=0, r=data.size-1)
-      size = r - p
-      if size > SIZE_FOR_INSERTION
+      while (distance = (r - p)) > 0
+        #optimization by insertion sort
+        if distance < SIZE_FOR_INSERTION
+          Sorting::InsertionSort.sort!(data, p, r)
+          return
+        end
         q = partition(data, p, r)
-        quicksort(data, p, q-1)
         quicksort(data, q+1, r)
-      elsif size > 0
-        Sorting::InsertionSort.sort!(data, p, r)
+        r = q - 1
       end
     end
 
