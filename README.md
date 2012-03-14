@@ -15,5 +15,6 @@ Algorithms implemented in Ruby
 * insertion sort: Sorting::InsertionSort.sort
 * shell sort: Sorting::ShellSort.sort
 * library sort: Sorting::LibrarySort.sort
-* quick sort: Sorting::QuickSort.sort
 * merge sort: Sorting::MergeSort.sort
+* quick sort: Sorting::QuickSort.sort
+* intro sort: Sorting::IntroSort.sort
