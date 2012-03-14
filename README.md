@@ -13,6 +13,7 @@ Algorithms implemented in Ruby
 * heap sort: Sorting::HeapSort.sort
 * smooth sort: Sorting::SmoothSort.sort
 * insertion sort: Sorting::InsertionSort.sort
+* shell sort: Sorting::ShellSort.sort
 * library sort: Sorting::LibrarySort.sort
 * quick sort: Sorting::QuickSort.sort
 * merge sort: Sorting::MergeSort.sort
