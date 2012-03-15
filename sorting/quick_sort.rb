@@ -6,10 +6,20 @@ module Sorting
     TEST_DATA_SIZE=100_000
     SIZE_FOR_INSERTION=12
 
+    # Quick sort
+    # Comparison sort
+    # Partitioning
+    # Unstable(in efficient implementations)
+    # Time complexity: O(nlogn), Ө(nlogn), O(n2)
+    # Space complexity: O(logn)
+    # Support parallelization
+    # Median-of-3 killer
     def self.sort!(data)
       quicksort(data)
       nil
     end
+
+    protected
 
     def self.quicksort(data, p=0, r=data.size-1)
       while (distance = (r - p)) > 0

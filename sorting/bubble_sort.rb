@@ -4,6 +4,13 @@ module Sorting
     extend Helper
     TEST_DATA_SIZE=1000
 
+    # Bubble Sort
+    # Comparison sort
+    # Exchanging
+    # Stable
+    # Time complexity: Ω(n), Ө(n2), O(n2)
+    # Space complexity: O(n) total, O(1) auxiliary
+    # Tiny code size
     def self.sort!(data)
       max_i = data.size - 1
       (0...max_i).each do |i|

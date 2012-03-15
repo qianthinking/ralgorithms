@@ -2,10 +2,18 @@ require File.join(File.dirname(File.realpath(__FILE__)), "helper")
 module Sorting
   class ShellSort
     extend Helper
-    TEST_DATA_SIZE=100000
+    TEST_DATA_SIZE=100_000
     GAP_FACTOR = 2.35
     GAP_REQUIRED_THRESHOLD = 10
 
+    # Shell sort
+    # Comparison sort
+    # Insertion
+    # Unstable
+    # Time complexity: depends on gap sequence, best known is O(n(logn)2)
+    # Space complexity: O(1)
+    # Simple, fast
+    # Empirical gap [1750, 701, 301, 132, 57, 23, 10, 4, 1]
     def self.sort!(data)
       #see http://oeis.org/A102549
       gaps = [1, 4, 10, 23, 57, 132, 301, 701, 1750].reverse

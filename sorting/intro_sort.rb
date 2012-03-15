@@ -7,10 +7,20 @@ module Sorting
     TEST_DATA_SIZE=100_000
     SIZE_FOR_INSERTION=12
 
+    # Introsort or introspective sort 
+    # Comparison sort
+    # Partitioning & Selection
+    # Unstable
+    # Time complexity: O(nlogn), Ө(nlogn), O(nlogn)
+    # Space complexity: O(logn)
+    # Support parallelization
+    # Better to median-of-3 killer
     def self.sort!(data)
       introsort(data)
       nil
     end
+
+    protected
 
     def self.introsort(data, l=0, r=data.size-1, depth_limit=2*Math.log((r-l), 2).to_i)
       while (distance = (r - l)) > 0

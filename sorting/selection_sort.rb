@@ -4,6 +4,14 @@ module Sorting
     extend Helper
     TEST_DATA_SIZE=1000
 
+    # Selection sort
+    # Comparison sort
+    # Selection
+    # Unstable
+    # Time complexity: Ω(n2), Ө(n2), O(n2)
+    # Space complexity: O(n) total, O(1) auxiliary
+    # Suitable for small arrays (10-20) or write heavy situation
+    # Family: Heap sort, Smooth sort
     def self.sort!(data)
       max_i = data.size - 1
       (0...max_i).each do |i|

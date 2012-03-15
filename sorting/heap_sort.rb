@@ -6,6 +6,13 @@ module Sorting
 
     class << self
 
+      # Heap sort
+      # Comparison sort
+      # Selection
+      # Unstable
+      # Time complexity: Ω(nlogn), Ө(nlogn), O(nlogn)
+      # Space complexity: O(n) total, O(1) auxiliary
+      # Strongly random access, poor locality of reference
       def sort!(data, l=0, r=data.size-1)
         build_max_heap data
         r.downto(l).each do |i|
@@ -45,7 +52,6 @@ module Sorting
       def get_left_child(start, i)
         (i-start)*2 + 1
       end
-
 
     end
 

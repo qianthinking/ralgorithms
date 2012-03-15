@@ -6,6 +6,15 @@ module Sorting
     TEST_DATA_SIZE=100_000
     SIZE_FOR_INSERTION=15
 
+    # Merge sort
+    # Comparison sort
+    # Merging
+    # Stable
+    # Time complexity: O(nlogn), Ө(nlogn), O(nlogn)
+    # Space complexity: O(n)
+    # Support parallelization
+    # Better for linked list
+    # Efficient at handling slow-to-access sequential media
     def self.sort(data)
       if data.size < SIZE_FOR_INSERTION
         Sorting::InsertionSort.sort!(data) 
@@ -16,6 +25,8 @@ module Sorting
       right = data[mid...data.size]
       merge(sort(left), sort(right))
     end
+
+    protected
 
     def self.merge(left, right)
       if left.empty? || right.empty?

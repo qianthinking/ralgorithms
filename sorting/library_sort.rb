@@ -7,6 +7,14 @@ module Sorting
 
     GAP = 8
 
+    # Library sort
+    # Comparison sort
+    # Insertion
+    # Stable
+    # Time complexity: Ω(n), Ө(nlogn), O(n2)
+    # Space complexity: O(n)
+    # Very fast, Adaptive, Online
+    # Requires extra space
     def self.sort(data)
       sorting_data = Array.new data.size
       steps = build_steps data
@@ -31,6 +39,8 @@ module Sorting
       InsertionSort.sort! sorting_data
       sorting_data
     end
+
+    protected
 
     def self.build_steps(data)
       min, max = data.minmax

@@ -27,6 +27,13 @@ module Sorting
 
     class << self
 
+      # Smooth sort
+      # Comparison sort
+      # Selection
+      # Unstable
+      # Time complexity: Ω(n), Ө(nlogn), O(nlogn)
+      # Space complexity: O(n) total, O(1) auxiliary
+      # Complicated, slow than heap sort in average and worse case
       def sort!(data)
         max_i = data.size - 1
         helper = HeapHelper.new
@@ -37,6 +44,7 @@ module Sorting
         nil
       end
 
+      protected
       def build_leonardo_heap(data, last_i, helper)
         (0..last_i).each do |i|
           if helper.bit_trees == 0 #init

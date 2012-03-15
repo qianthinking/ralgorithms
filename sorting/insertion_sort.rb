@@ -6,6 +6,15 @@ module Sorting
     BINARY_SEARCH_THRESHOLD=80
     BINARY_SEARCH_TEST_DISTANCE=[5, BINARY_SEARCH_THRESHOLD].min
 
+    # Insertion sort
+    # Comparison sort
+    # Insertion
+    # Stable
+    # Time complexity: Ω(n), Ө(n2), O(n2)
+    # Space complexity: O(n) total, O(1) auxiliary
+    # Simple, Adaptive, Online
+    # More efficient in practice than bubble sort or selection sort
+    # Write O(n2) times
     def self.sort!(data, l=0, r=data.size-1, start=l+1)
       (start..r).each do |i|
         value = data[i]
@@ -18,6 +27,8 @@ module Sorting
       end
       nil
     end
+
+    protected
 
     def self.binary_sort!(data, l=0, r=data.size-1, start=l+1)
       (start..r).each do |i|

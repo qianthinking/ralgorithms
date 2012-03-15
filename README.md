@@ -4,7 +4,7 @@ Algorithms implemented in Ruby
 
 ## Test
 
-  ruby sorting/test_helper.rb
+    ruby sorting/test_helper.rb
 
 ## Sorting algorithms:
 
