@@ -19,8 +19,9 @@ module Sorting
     def self.test(filename, benchmark_data_size=nil)
       data = get_sample_data
       clazz = eval("Sorting::#{File.basename(filename).split("_")[0].capitalize}Sort")
-      puts "#{clazz} - before sort: #{data.inspect}"
       benchmark_data_size ||= clazz::TEST_DATA_SIZE
+      return if benchmark_data_size.nil?
+      puts "#{clazz} - before sort: #{data.inspect}"
       data = sort(clazz, data)
       puts "#{clazz} - after  sort: #{data.inspect}"
 
