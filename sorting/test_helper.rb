@@ -48,6 +48,25 @@ module Sorting
       puts result
     end
 
+    def self.test_original_sort(benchmark_data_size=nil)
+      benchmark_data_size ||= 100_000
+      sample_data = get_sample_data benchmark_data_size, false
+      benchmark_data = sample_data.dup
+      result = Benchmark.measure do
+        benchmark_data.sort!
+      end
+      puts "#{sample_data.size} ordered number cost"
+      puts result
+
+      sample_data = get_sample_data benchmark_data_size
+      benchmark_data = sample_data.dup
+      result = Benchmark.measure do
+        benchmark_data.sort!
+      end
+      puts "#{sample_data.size} ordered number cost"
+      puts result
+    end
+
     def self.diff(a, b)
       diff = {}
       a.each_with_index do |x, i|
@@ -60,6 +79,7 @@ module Sorting
   end
 end
 if __FILE__ == $0
+  Sorting::TestHelper.test_original_sort 100_000
   dir = File.dirname(File.realpath(__FILE__))
   Dir.foreach(dir).grep /sort/ do |file|
     require File.join(dir, file)
