@@ -55,7 +55,7 @@ module Sorting
       result = Benchmark.measure do
         benchmark_data.sort!
       end
-      puts "#{sample_data.size} ordered number cost"
+      puts "Array.sort: #{sample_data.size} ordered number cost"
       puts result
 
       sample_data = get_sample_data benchmark_data_size
@@ -63,7 +63,7 @@ module Sorting
       result = Benchmark.measure do
         benchmark_data.sort!
       end
-      puts "#{sample_data.size} ordered number cost"
+      puts "Array.sort: #{sample_data.size} ordered number cost"
       puts result
     end
 

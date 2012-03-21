@@ -1,0 +1,3 @@
+#!/bin/bash
+ruby lib/sorting/test_helper.rb
+ruby lib/searching/skip_list.rb
