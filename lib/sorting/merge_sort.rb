@@ -17,7 +17,7 @@ module Sorting
     # Efficient at handling slow-to-access sequential media
     def self.sort(data)
       if data.size < SIZE_FOR_INSERTION
-        Sorting::InsertionSort.sort!(data) 
+        data = Sorting::InsertionSort.sort(data) 
         return data
       end
       mid   = data.size / 2
