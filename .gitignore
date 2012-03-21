@@ -1,1 +1,4 @@
+Makefile
 *.gem
+*.so
+*.o
