@@ -18,3 +18,8 @@ Algorithms implemented in Ruby
 * merge sort: Sorting::MergeSort.sort
 * quick sort: Sorting::QuickSort.sort
 * intro sort: Sorting::IntroSort.sort
+
+## Search algorithms:
+
+* skip list: Searching::SkipList
+
