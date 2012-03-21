@@ -2,9 +2,9 @@
 
 Algorithms implemented in Ruby
 
-## Test
+## Test/Benchmark
 
-    ruby sorting/test_helper.rb
+    bin/benchmark
 
 ## Sorting algorithms:
 
