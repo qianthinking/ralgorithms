@@ -4,20 +4,22 @@ VALUE sortingModule;
 VALUE sortingClass;
 
 void
-insert_sort_impl(VALUE* base, const size_t nel, const size_t size,
+insert_sort_impl(VALUE* base, const size_t len, long start, long l, long r, 
 	   int (*cmp)(const void*, const void*, void*), void *d)
 {
     VALUE obj;
     VALUE previous;
     unsigned int i, j;
-    for(i = 1; i <nel; i++) {
+    if (l == -1) l = 0;
+    if (r == -1) r = len - 1;
+    if (start == -1) start = l + 1;
+    for(i = start; i <=r; i++) {
         obj = base[i];
         j = i;
-        while (j > 0)
+        while (j > l)
         {
             previous = base[j-1];
-            int r = (*cmp)(obj, previous, d);
-            if(r < 0)
+            if((*cmp)(obj, previous, d) < 0)
             {
                 base[j] = previous;
                 j--;

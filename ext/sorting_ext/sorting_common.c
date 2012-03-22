@@ -318,7 +318,7 @@ set_id_cmp(ID id)
 }
 
 VALUE
-dynamic_sort(VALUE ary, void(*sort_handler)(void*, const size_t, const size_t, int(*)(const void*, const void*, void*), void*))
+dynamic_sort(VALUE ary, void(*sort_handler)(void*, const size_t, long, long, long, int(*)(const void*, const void*, void*), void*))
 {
     rb_ary_modify(ary);
     assert(!ARY_SHARED_P(ary));
@@ -330,7 +330,7 @@ dynamic_sort(VALUE ary, void(*sort_handler)(void*, const size_t, const size_t, i
 	data.ary = tmp;
 	data.opt_methods = 0;
 	data.opt_inited = 0;
-	sort_handler(RARRAY_PTR(tmp), RARRAY_LEN(tmp), sizeof(VALUE),
+	sort_handler(RARRAY_PTR(tmp), RARRAY_LEN(tmp), -1, -1, -1, 
 		   rb_block_given_p()?sort_3:sort_4, &data);
 
         if (ARY_EMBED_P(tmp)) {
