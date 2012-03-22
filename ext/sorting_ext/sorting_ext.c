@@ -28,10 +28,10 @@ insert_sort_impl(VALUE* base, const size_t nel, const size_t size,
 
 }
 
-VALUE
+void
 insert_sort_bang(VALUE dummy, VALUE ary)
 {
-    return dynamic_sort(ary, insert_sort_impl);
+    dynamic_sort(ary, insert_sort_impl);
 }
 
 void Init_sorting_ext(void) {
