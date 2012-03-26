@@ -21,9 +21,10 @@ module Sorting
       clazz = eval("Sorting::#{File.basename(filename).split("_")[0].capitalize}Sort")
       benchmark_data_size ||= clazz::TEST_DATA_SIZE
       return if benchmark_data_size.nil?
-      puts "#{clazz} - before sort: #{data.inspect}"
+      is_ext = clazz.const_defined?("IS_EXT") && clazz::IS_EXT ? "(C ext)" : ""
+      puts "#{clazz}#{is_ext} - before sort: #{data.inspect}"
       data = sort(clazz, data)
-      puts "#{clazz} - after  sort: #{data.inspect}"
+      puts "#{clazz}#{is_ext} - after  sort: #{data.inspect}"
 
       sample_data = get_sample_data benchmark_data_size, false
       benchmark_data = sample_data.dup

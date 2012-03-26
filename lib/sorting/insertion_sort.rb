@@ -28,8 +28,6 @@ module Sorting
       nil
     end
 
-    protected
-
     def self.binary_sort!(data, l=0, r=data.size-1, start=l+1)
       (start..r).each do |i|
         value = data[i]
@@ -66,6 +64,8 @@ module Sorting
 
   end
 end
+
+require File.join(File.dirname(File.realpath(__FILE__)), "load_ext.rb")
 
 if __FILE__ == $0
   require File.join(File.dirname(File.realpath(__FILE__)), "test_helper")

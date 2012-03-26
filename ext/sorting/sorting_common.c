@@ -151,6 +151,29 @@ rb_ary_increment_share(VALUE shared)
     return shared;
 }
 
+static void
+rb_ary_decrement_share(VALUE shared)
+{
+    if (shared) {
+	long num = ARY_SHARED_NUM(shared) - 1;
+	if (num == 0) {
+	    rb_ary_free(shared);
+	    rb_gc_force_recycle(shared);
+	}
+	else if (num > 0) {
+	    ARY_SET_SHARED_NUM(shared, num);
+	}
+    }
+}
+
+static void
+rb_ary_unshare(VALUE ary)
+{
+    VALUE shared = RARRAY(ary)->as.heap.aux.shared;
+    rb_ary_decrement_share(shared);
+    FL_UNSET_SHARED(ary);
+}
+
 static VALUE
 ary_make_shared(VALUE ary)
 {
@@ -318,7 +341,7 @@ set_id_cmp(ID id)
 }
 
 VALUE
-dynamic_sort(VALUE ary, void(*sort_handler)(void*, const size_t, long, long, long, int(*)(const void*, const void*, void*), void*))
+dynamic_sort(VALUE ary, void(*sort_handler)(void*, const size_t, long, long, long, int(*)(const void*, const void*, void*), void*), long start, long l, long r)
 {
     rb_ary_modify(ary);
     assert(!ARY_SHARED_P(ary));
@@ -330,7 +353,7 @@ dynamic_sort(VALUE ary, void(*sort_handler)(void*, const size_t, long, long, lon
 	data.ary = tmp;
 	data.opt_methods = 0;
 	data.opt_inited = 0;
-	sort_handler(RARRAY_PTR(tmp), RARRAY_LEN(tmp), -1, -1, -1, 
+	sort_handler(RARRAY_PTR(tmp), RARRAY_LEN(tmp), start, l, r, 
 		   rb_block_given_p()?sort_3:sort_4, &data);
 
         if (ARY_EMBED_P(tmp)) {
